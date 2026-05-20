@@ -1,0 +1,10 @@
+# Training Config File
+
+batch_size: 8
+gradient_accumulation_steps: 8
+
+learning_rate: 3e-4
+warmup_steps: 1_000
+
+optimizer: "adamw"
+max_grad_norm: 1.0
