@@ -1,0 +1,7 @@
+# Executive Reasoner Model
+
+d_model: 768  # Model Dimension
+n_heads: 12  # Number of Attention Heads
+n_layers: 24  # Number of Layers
+dropout: 0.1
+max_seq_len: 512
