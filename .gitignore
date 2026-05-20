@@ -1,3 +1,6 @@
+# VSCode Related Files and Directories
+.vscode/
+
 # Environment Variables
 *.env
 .env*
