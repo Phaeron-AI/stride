@@ -1,0 +1,14 @@
+# Test Generation Config File
+d_model: 512
+n_heads: 8
+n_layers: 12
+dropout: 0.1
+
+max_code_len: 1024
+max_spec_len: 512
+
+max_test_len: 512
+# unit_test, edge_case_test, performance_test, integration_test
+test_types: 4
+max_retries: 3
+execution_timeout: 5
