@@ -1,0 +1,10 @@
+# Graph Builder Config File
+
+d_model: 512
+n_heads: 8
+n_layers: 8
+dropout: 0.1
+max_seq_len: 512
+max_nodes: 64
+edge_types: 6
+node_types: 4
