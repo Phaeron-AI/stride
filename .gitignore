@@ -9,3 +9,6 @@
 # Virtual Environments
 venv/
 .venv/
+
+# Python Bytecpde
+__pycache__/
