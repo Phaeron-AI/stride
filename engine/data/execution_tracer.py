@@ -187,8 +187,7 @@ class ASTFeatureExtractor:
     "Subscript", "Starred", "Name", "List", "Tuple",
     "Slice", "Load", "Store", "Del", "And",
     "Or", "Add", "Sub", "Mult", "Div",
-    "FloorDiv", "Mod", "Pow", "LShift", "RShift",
-    "BitOr", "BitXor", "BitAnd", "MatMult",
+    "FloorDiv", "Mod", "Pow", "MatMult",
   ]
 
   def extract(self, source: str) -> List[Dict[str, Any]]:
@@ -301,7 +300,7 @@ class TracePipeline:
 
 
 if __name__ == "__main__":
-  sys.path.append(str(Path(__file__).parents[2]))
+  sys.path.append(str(Path(__file__).parents[1]))
   from config.global_config import STRIDEConfig
 
   config = STRIDEConfig.load()
