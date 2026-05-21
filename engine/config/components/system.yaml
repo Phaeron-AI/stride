@@ -1,7 +1,7 @@
 # STRIDES: System Config
 
-model_name: "STRIVE"
+model_name: "STRIDE"
 version: 0.1.0
 precision: "bf16" # bfloat16
 device: "cuda"
-seed: 0.42
+seed: 42
