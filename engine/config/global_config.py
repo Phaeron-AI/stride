@@ -111,7 +111,7 @@ class ComplexityReasonerConfig:
   d_ff: int = 0
   dropout: float = 0.1
   max_seq_len: int = 512
-  complexity_classes: int = 8
+  complexity_classes: int = 9
 
   def __post_init__(self):
     self.d_head = self.d_model // self.n_heads
