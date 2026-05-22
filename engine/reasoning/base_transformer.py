@@ -102,22 +102,30 @@ class STRIDETransformer(nn.Module):
     
     return self.final_norm(hidden)
   
-  def loop_forward(self, token_ids: Tensor, mask: Optional[Tensor] = None)-> LoopState:
+  def loop_forward(self, token_ids: Tensor, mask: Optional[Tensor] = None) -> LoopState:
     hidden = self.embed_dropout(self.embed(token_ids))
 
     loop_outputs: List[Tensor] = []
     exit_probs: List[Tensor] = []
 
-    survival = torch.ones(hidden.shape[0], device=hidden.device)
-    lambda_r = self.exit_gate(hidden)
+    raw_gate = self.exit_gate(hidden) 
+    
+    survival = torch.ones(raw_gate.shape, device=hidden.device, dtype=hidden.dtype)
 
-    p_r = lambda_r * survival
-    survival = survival * (1 - lambda_r)
+    for step in range(self.max_loops):
+      hidden = self._one_loop_pass(hidden, mask)
+      loop_outputs.append(hidden)
 
-    loop_outputs.append(hidden)
-    exit_probs.append(p_r)
+      lambda_r = self.exit_gate(hidden)
+      
+      if step < self.max_loops - 1:
+        p_r = lambda_r * survival
+        exit_probs.append(p_r.mean(dim=1) if p_r.ndim > 1 else p_r)
 
-    exit_probs[-1] = exit_probs[-1] + survival
+        survival = survival * (1 - lambda_r)
+      else:
+        p_r = survival
+        exit_probs.append(p_r.mean(dim=1) if p_r.ndim > 1 else p_r)
 
     return LoopState(
       hidden       = hidden,
