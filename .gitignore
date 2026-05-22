@@ -12,3 +12,6 @@ venv/
 
 # Python Bytecpde
 __pycache__/
+
+# Additional Cache Directories and Files
+cache/
