@@ -96,7 +96,7 @@ class STRIDETransformer(nn.Module):
     for layer_index, layer in enumerate(self.layers):
       hidden, partial = layer(hidden, blocks, partial, mask)
 
-      if (layer_index + 1) % self.block_size == 16:
+      if (layer_index + 1) % self.block_size == 0:
         blocks.append(partial.clone())
         partial = torch.zeros_like(partial)
     
@@ -110,7 +110,7 @@ class STRIDETransformer(nn.Module):
 
     raw_gate = self.exit_gate(hidden) 
     
-    survival = torch.ones(raw_gate.shape, device=hidden.device, dtype=hidden.dtype)
+    survival = torch.ones(raw_gate.shape[0], device=hidden.device, dtype=hidden.dtype)
 
     for step in range(self.max_loops):
       hidden = self._one_loop_pass(hidden, mask)
