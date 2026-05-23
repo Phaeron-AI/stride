@@ -1,3 +1,4 @@
+```
 stride/
 │
 ├── main.py
@@ -99,3 +100,5 @@ stride/
     └── evaluation/
         ├── __init__.py
         └── benchmarks.py             ← BenchmarkRunner
+
+```
