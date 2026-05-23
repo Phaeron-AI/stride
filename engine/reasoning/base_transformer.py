@@ -106,11 +106,9 @@ class STRIDETransformer(nn.Module):
     hidden = self.embed_dropout(self.embed(token_ids))
 
     loop_outputs: List[Tensor] = []
-    exit_probs: List[Tensor] = []
-
-    raw_gate = self.exit_gate(hidden) 
+    exit_probs: List[Tensor] = [] 
     
-    survival = torch.ones(raw_gate.shape[0], device=hidden.device, dtype=hidden.dtype)
+    survival = torch.ones(token_ids.shape[0], device=hidden.device, dtype=hidden.dtype)
 
     for step in range(self.max_loops):
       hidden = self._one_loop_pass(hidden, mask)
