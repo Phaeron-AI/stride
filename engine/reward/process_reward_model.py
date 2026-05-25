@@ -92,8 +92,7 @@ class ProcessRewardModel(nn.Module):
     self.final_norm = RMSNorm(cfg.d_model)
 
     self.score_head = nn.Sequential(
-      nn.Linear(cfg.d_model, cfg.score_dimensions, bias=True),
-      nn.Sigmoid(),
+      nn.Linear(cfg.d_model, cfg.score_dimensions, bias=True)
     )
 
     self.register_buffer("score_weights", torch.tensor(cfg.score_weights, dtype=torch.float32))
